@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "killfeedmod",
+  "version": "1.0.0",
+  "name": "KillFeed Mod",
+  "description": "Custom Killfeed Mod",
+  "authors": [
+    "Me"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/killfeedmod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.killfeed1_20_10_1.KillFeedMod"
+    ],
+    "client": [
+      "com.example.killfeed1_20_10_1.client.KillFeedClient"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
