@@ -131,9 +131,8 @@ public class ExampleMod {
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
-            // Initialize GeckoLib for Superman flight animations
-            com.example.examplemod.superman.geckolib.SupermanGeckoLibInit.init();
-            LOGGER.info("Superman Flight Mod with GeckoLib animations initialized!");
+            // GeckoLib for Superman flight is auto-registered via @SubscribeEvent
+            LOGGER.info("Superman Flight Mod initialized!");
         }
     }
 }
