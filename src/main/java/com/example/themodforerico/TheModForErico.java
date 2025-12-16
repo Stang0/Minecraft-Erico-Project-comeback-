@@ -1,7 +1,6 @@
 package com.example.themodforerico;
 
 import com.example.themodforerico.handler.PacketHandler;
-import com.example.themodforerico.client.ClientEvents;
 import com.example.themodforerico.server.ServerEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,10 +20,12 @@ public class TheModForErico {
 
         // ลงทะเบียน Event Bus หลัก
         MinecraftForge.EVENT_BUS.register(this);
+
+        // 1. ลงทะเบียน Server Events (อันนี้เก็บไว้ได้ เพราะ Server ต้องใช้)
+        MinecraftForge.EVENT_BUS.register(new ServerEvents());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // Init Networking
         PacketHandler.register();
     }
 }

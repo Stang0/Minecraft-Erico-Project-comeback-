@@ -135,8 +135,13 @@ Reading Input: C:\Users\Tow\Downloads\serverside\build\libs\serverside-1.0.jar
 Adding input to inheritance map
 Processing entries
 Conflicting propagated mapping for com/example/themodforerico/client/killfeed/KillFeedToast/render(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/components/toasts/ToastComponent;J)Lnet/minecraft/client/gui/components/toasts/Toast$Visibility; from net/minecraft/client/gui/components/toasts/Toast/render(Lnet/minecraft/client/gui/GuiGraphics;Lnet/minecraft/client/gui/components/toasts/ToastComponent;J)Lnet/minecraft/client/gui/components/toasts/Toast$Visibility;: render -> m_7172_
+Conflicting propagated mapping for com/example/themodforerico/client/questsystem/QuestBookScreen$QuestList$QuestEntryItem/mouseClicked(DDI)Z from net/minecraft/client/gui/components/events/GuiEventListener/mouseClicked(DDI)Z: mouseClicked -> m_6375_
+Conflicting propagated mapping for com/example/themodforerico/client/questsystem/QuestBookScreen$QuestList$QuestEntryItem/render(Lnet/minecraft/client/gui/GuiGraphics;IIIIIIIZF)V from net/minecraft/client/gui/components/AbstractSelectionList$Entry/render(Lnet/minecraft/client/gui/GuiGraphics;IIIIIIIZF)V: render -> m_6311_
+Conflicting propagated mapping for com/example/themodforerico/client/questsystem/QuestBookScreen$QuestList$QuestEntryItem/getNarration()Lnet/minecraft/network/chat/Component; from net/minecraft/client/gui/components/ObjectSelectionList$Entry/getNarration()Lnet/minecraft/network/chat/Component;: getNarration -> m_142172_
 Conflicting propagated mapping for com/example/themodforerico/client/questsystem/QuestBookScreen/render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V from net/minecraft/client/gui/screens/Screen/render(Lnet/minecraft/client/gui/GuiGraphics;IIF)V: render -> m_88315_
 Conflicting propagated mapping for com/example/themodforerico/client/questsystem/QuestBookScreen/init()V from net/minecraft/client/gui/screens/Screen/init()V: init -> m_7856_
+Conflicting propagated mapping for com/example/themodforerico/client/questsystem/QuestBookScreen$QuestList/getRowWidth()I from net/minecraft/client/gui/components/AbstractSelectionList/getRowWidth()I: getRowWidth -> m_5759_
+Conflicting propagated mapping for com/example/themodforerico/client/questsystem/QuestBookScreen$QuestList/getScrollbarPosition()I from net/minecraft/client/gui/components/AbstractSelectionList/getScrollbarPosition()I: getScrollbarPosition -> m_5756_
 Conflicting propagated mapping for net/minecraft/world/entity/LivingEntity/lambda$addAdditionalSaveData$3(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V from net/minecraft/world/entity/player/Player/lambda$addAdditionalSaveData$3(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/nbt/Tag;)V: lambda$addAdditionalSaveData$3 -> m_219754_
 Adding extras
 Sorting
@@ -144,6 +149,11 @@ Writing Output: C:\Users\Tow\Downloads\serverside\build\reobfJar\output.jar
   META-INF/
   META-INF/MANIFEST.MF
   META-INF/mods.toml
+  assets/
+  assets/themodforerico/
+  assets/themodforerico/textures/
+  assets/themodforerico/textures/gui/
+  assets/themodforerico/textures/gui/vanilla.png
   com/
   com/example/
   com/example/themodforerico/
@@ -155,7 +165,10 @@ Writing Output: C:\Users\Tow\Downloads\serverside\build\reobfJar\output.jar
   com/example/themodforerico/client/ClientPacketHandler.class
   com/example/themodforerico/client/killfeed/
   com/example/themodforerico/client/killfeed/KillFeedToast.class
+  com/example/themodforerico/client/killfeed/QuestToast.class
   com/example/themodforerico/client/questsystem/
+  com/example/themodforerico/client/questsystem/QuestBookScreen$QuestList$QuestEntryItem.class
+  com/example/themodforerico/client/questsystem/QuestBookScreen$QuestList.class
   com/example/themodforerico/client/questsystem/QuestBookScreen.class
   com/example/themodforerico/client/questsystem/QuestEntry.class
   com/example/themodforerico/client/questsystem/QuestManager.class
@@ -166,4 +179,9 @@ Writing Output: C:\Users\Tow\Downloads\serverside\build\reobfJar\output.jar
   com/example/themodforerico/handler/PacketQuestRemove.class
   com/example/themodforerico/server/
   com/example/themodforerico/server/ServerEvents.class
+  com/example/themodforerico/utils/
+  com/example/themodforerico/utils/DefaultUVs.class
+  com/example/themodforerico/utils/MathEasing.class
+  com/example/themodforerico/utils/TextureUV.class
+  com/example/themodforerico/utils/TypeBasedUVs.class
   pack.mcmeta

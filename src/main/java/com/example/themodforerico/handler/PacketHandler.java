@@ -26,9 +26,10 @@ public class PacketHandler {
         INSTANCE.messageBuilder(PacketKillFeed.class, id++, NetworkDirection.PLAY_TO_CLIENT)
                 .encoder(PacketKillFeed::encode)
                 .decoder(PacketKillFeed::new)
+                // ⚠️ ใช้ .consumer(PacketKillFeed::handle) แทน
                 .consumerMainThread((msg, ctx) -> {
-                    // ⚠️ ใช้ DistExecutor ป้องกัน Server Crash
                     DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handleKillFeed(msg, ctx));
+
                 })
                 .add();
 
@@ -37,7 +38,6 @@ public class PacketHandler {
                 .encoder(PacketQuestAdd::encode)
                 .decoder(PacketQuestAdd::new)
                 .consumerMainThread((msg, ctx) -> {
-                    // ⚠️ ใช้ DistExecutor ป้องกัน Server Crash
                     DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handleQuestAdd(msg, ctx));
                 })
                 .add();
@@ -47,7 +47,6 @@ public class PacketHandler {
                 .encoder(PacketQuestRemove::encode)
                 .decoder(PacketQuestRemove::new)
                 .consumerMainThread((msg, ctx) -> {
-                    // ⚠️ ใช้ DistExecutor ป้องกัน Server Crash
                     DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ClientPacketHandler.handleQuestRemove(msg, ctx));
                 })
                 .add();

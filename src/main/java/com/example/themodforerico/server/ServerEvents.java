@@ -55,7 +55,6 @@ public class ServerEvents {
                 .then(Commands.literal("remove")
                         .then(Commands.argument("name", StringArgumentType.string())
                                 .then(Commands.argument("player", EntityArgument.player())
-                                        .then(Commands.argument("track", BoolArgumentType.bool()) // Argument นี้มีไว้เฉยๆ ตาม request เดิม
                                                 .executes(context -> {
                                                     String name = StringArgumentType.getString(context, "name");
                                                     ServerPlayer targetPlayer = EntityArgument.getPlayer(context, "player");
@@ -63,7 +62,7 @@ public class ServerEvents {
                                                     PacketHandler.sendToPlayer(new PacketQuestRemove(name), targetPlayer);
                                                     context.getSource().sendSuccess(() -> Component.literal("§c[QUEST] Removed '" + name + "' from " + targetPlayer.getName().getString()), true);
                                                     return 1;
-                                                })))))
+                                                }))))
         );
     }
 }

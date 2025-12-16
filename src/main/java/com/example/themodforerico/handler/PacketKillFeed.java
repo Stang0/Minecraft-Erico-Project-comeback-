@@ -1,6 +1,9 @@
 package com.example.themodforerico.handler;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.network.NetworkEvent;
+
+import java.util.function.Supplier;
 
 public class PacketKillFeed {
     public final String message;

@@ -1,6 +1,7 @@
 package com.example.themodforerico.client;
 
 import com.example.themodforerico.client.killfeed.KillFeedToast;
+import com.example.themodforerico.client.killfeed.QuestToast;
 import com.example.themodforerico.client.questsystem.QuestManager;
 import com.example.themodforerico.handler.PacketKillFeed;
 import com.example.themodforerico.handler.PacketQuestAdd;
@@ -22,6 +23,10 @@ public class ClientPacketHandler {
     public static void handleQuestAdd(PacketQuestAdd msg, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             QuestManager.addQuest(msg.name, msg.desc, msg.pos, msg.shouldTrack);
+            QuestToast.show(
+                    Component.literal(msg.name),
+                    Component.literal(msg.desc)
+            );
             Minecraft.getInstance().player.sendSystemMessage(Component.literal("§6[QUEST] Received: §e" + msg.name));
         });
         ctx.get().setPacketHandled(true);
