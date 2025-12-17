@@ -1,0 +1,7 @@
+{
+    "key.categories.examplemod": "Superman Mod",
+    "key.examplemod.toggle_flight": "เปิด/ปิด การบินแบบ Superman",
+    "key.examplemod.speed_boost": "เร่งความเร็ว",
+    "message.examplemod.flight_activated": "เปิดใช้งานการบิน Superman แล้ว!",
+    "message.examplemod.flight_deactivated": "ปิดการบินแล้ว"
+}

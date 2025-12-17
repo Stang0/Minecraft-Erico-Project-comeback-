@@ -66,10 +66,6 @@ public class SupermanPlayerRenderer extends GeoReplacedEntityRenderer<AbstractCl
 
         poseStack.pushPose();
 
-        // Fix upside-down model - GeckoLib models need to be flipped
-        poseStack.translate(0, 1.5, 0); // Move up to align with player
-        poseStack.scale(1, -1, 1); // Flip model
-
         // Get the baked model
         BakedGeoModel model = getGeoModel().getBakedModel(getGeoModel().getModelResource(ANIMATABLE));
 

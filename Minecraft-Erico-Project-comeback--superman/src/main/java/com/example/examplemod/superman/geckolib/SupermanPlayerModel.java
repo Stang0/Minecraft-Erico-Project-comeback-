@@ -1,10 +1,7 @@
 package com.example.examplemod.superman.geckolib;
 
 import com.example.examplemod.ExampleMod;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 
 /**
@@ -31,30 +28,5 @@ public class SupermanPlayerModel extends GeoModel<SupermanGeckoPlayer> {
     @Override
     public ResourceLocation getAnimationResource(SupermanGeckoPlayer animatable) {
         return ANIMATION;
-    }
-
-    @Override
-    public void setCustomAnimations(SupermanGeckoPlayer animatable, long instanceId,
-            AnimationState<SupermanGeckoPlayer> animationState) {
-        super.setCustomAnimations(animatable, instanceId, animationState);
-
-        AbstractClientPlayer player = animatable.getCurrentPlayer();
-        if (player == null)
-            return;
-
-        // Use "root" bone (matches the geo file)
-        var rootBone = this.getAnimationProcessor().getBone("root");
-        if (rootBone == null) {
-            System.out.println("[Superman] ⚠️ Root bone 'root' not found!");
-            return;
-        }
-
-        // Only apply PITCH rotation (looking up/down)
-        // Yaw rotation is handled by Minecraft's render system automatically
-        float pitch = player.getXRot();
-        float pitchRad = pitch * Mth.DEG_TO_RAD;
-
-        // Apply pitch rotation only (vertical axis)
-        rootBone.setRotX(-pitchRad);
     }
 }

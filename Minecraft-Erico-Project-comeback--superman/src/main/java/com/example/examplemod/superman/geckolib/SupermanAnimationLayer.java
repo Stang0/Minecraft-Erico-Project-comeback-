@@ -12,32 +12,51 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
  * Render layer that triggers GeckoLib rendering during flight.
- * Uses animation state from SupermanGeckoPlayer to determine when to render.
+ * Handles smooth visual transitions both when starting and stopping flight.
  */
 @OnlyIn(Dist.CLIENT)
 public class SupermanAnimationLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
 
     private SupermanPlayerRenderer renderer;
+    
+    // Visual state tracking per player
+    private static final Map<UUID, VisualState> visualStates = new HashMap<>();
+    
+    // Must match the transitionLength in SupermanGeckoPlayer's AnimationController
+    private static final int TRANSITION_TICKS = 10;
+
+    private static class VisualState {
+        boolean wasFlying = false;
+        int transitionTimer = 0;
+        boolean inTransitionOut = false;
+    }
 
     public SupermanAnimationLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> parent) {
         super(parent);
     }
 
     /**
-     * Check if player should have GeckoLib model visible
-     * Returns true for any state that is not STANDING
+     * Check if player should have GeckoLib model visible (flying or transitioning)
      */
     public static boolean isVisualFlying(AbstractClientPlayer player) {
-        SupermanGeckoPlayer.AnimState state = SupermanGeckoPlayer.getPlayerAnimState(player.getUUID());
-        // Also check if player is flying to trigger state change
-        if (state == SupermanGeckoPlayer.AnimState.STANDING && SupermanFlightHandler.isFlying(player)) {
-            return true; // Will trigger state change on render
+        UUID uuid = player.getUUID();
+        VisualState state = visualStates.get(uuid);
+        
+        if (SupermanFlightHandler.isFlying(player)) {
+            return true;
         }
-        return state != SupermanGeckoPlayer.AnimState.STANDING;
+        
+        return state != null && state.transitionTimer > 0;
+    }
+
+    private VisualState getVisualState(UUID uuid) {
+        return visualStates.computeIfAbsent(uuid, k -> new VisualState());
     }
 
     private SupermanPlayerRenderer getRenderer() {
@@ -61,20 +80,39 @@ public class SupermanAnimationLayer extends RenderLayer<AbstractClientPlayer, Pl
             AbstractClientPlayer player, float limbSwing, float limbSwingAmount,
             float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
-        // Get current animation state from the state machine
-        SupermanGeckoPlayer.AnimState animState = SupermanGeckoPlayer.getPlayerAnimState(player.getUUID());
+        UUID uuid = player.getUUID();
+        VisualState state = getVisualState(uuid);
         boolean isFlying = SupermanFlightHandler.isFlying(player);
-
-        // Always render if flying (this triggers state machine) or if in non-standing
-        // state
-        boolean shouldRender = isFlying || animState != SupermanGeckoPlayer.AnimState.STANDING;
-
+        
+        boolean shouldRender = false;
+        
+        if (isFlying) {
+            shouldRender = true;
+            state.transitionTimer = TRANSITION_TICKS;
+            state.inTransitionOut = false;
+            
+        } else if (state.wasFlying && !isFlying) {
+            state.inTransitionOut = true;
+            state.transitionTimer = TRANSITION_TICKS;
+            shouldRender = true;
+            
+        } else if (state.inTransitionOut && state.transitionTimer > 0) {
+            state.transitionTimer--;
+            shouldRender = true;
+            
+            if (state.transitionTimer <= 0) {
+                state.inTransitionOut = false;
+            }
+        }
+        
+        state.wasFlying = isFlying;
+        
         if (shouldRender) {
             getRenderer().renderAnimatedPlayer(player, poseStack, buffer, light, partialTicks);
         }
     }
-
+    
     public static void clearPlayerState(UUID playerId) {
-        SupermanGeckoPlayer.clearPlayerState(playerId);
+        visualStates.remove(playerId);
     }
 }

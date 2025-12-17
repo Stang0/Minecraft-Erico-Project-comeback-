@@ -73,13 +73,6 @@ public class SupermanFlightHandler {
         if (isFlying(player)) {
             handleFlightMovement(player, mc);
             player.fallDistance = 0;
-
-            // ✅ เพิ่มตรงนี้ เพื่อให้กล้อง/ตัว vanilla หันไปทิศเดียวกับที่ใช้ใน animation
-            player.yBodyRot  = player.getYRot();
-            player.yHeadRot  = player.getYRot();
-            player.yBodyRotO = player.yBodyRot;
-            player.yHeadRotO = player.yHeadRot;
-
             Vec3 motion = player.getDeltaMovement();
             if (motion.y < -0.1) {
                 player.setDeltaMovement(motion.x, -0.1, motion.z);
