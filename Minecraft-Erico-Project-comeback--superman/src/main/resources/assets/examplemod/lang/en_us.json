@@ -1,8 +1,0 @@
-{
-  "key.categories.examplemod": "Superman Mod",
-  "key.examplemod.toggle_flight": "Toggle Superman Flight",
-  "key.examplemod.speed_boost": "Speed Boost",
-  
-  "message.examplemod.flight_activated": "Superman Flight ACTIVATED",
-  "message.examplemod.flight_deactivated": "Flight Deactivated"
-}
