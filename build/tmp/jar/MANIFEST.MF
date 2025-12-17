@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: superheromod
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: superheromod
+Implementation-Version: 1.0
+Implementation-Vendor: 
+Implementation-Timestamp: 2025-12-17T21:11:37+0700
+

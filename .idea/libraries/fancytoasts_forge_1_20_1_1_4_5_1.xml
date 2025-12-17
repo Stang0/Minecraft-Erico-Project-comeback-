@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="fancytoasts-forge-1.20.1-1.4.5.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../fancytoasts-forge-1.20.1-1.4.5.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
